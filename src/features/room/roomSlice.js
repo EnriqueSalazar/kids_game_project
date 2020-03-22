@@ -1,10 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 import { db } from "../../firebase";
 
 export const slice = createSlice({
-  name: 'counter',
+  name: "room",
   initialState: {
-    value: 0,
+    value: 0
   },
   reducers: {
     increment: state => {
@@ -20,16 +20,16 @@ export const slice = createSlice({
     incrementByAmount: (state, action) => {
       state.value += action.payload;
       db.collection("users")
-      .doc('my test')
-      .set({payload: 'this is just a test'})
-      .then(() => {
-        console.log('this was a success')
-      })
-      .catch(error => {
-        console.error(error);
-      });
-    },
-  },
+        .doc("my test")
+        .set({ payload: action.payload })
+        .then(() => {
+          console.log("this was a success");
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+  }
 });
 
 export const { increment, decrement, incrementByAmount } = slice.actions;
@@ -46,7 +46,7 @@ export const incrementAsync = amount => dispatch => {
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const selectCount = state => state.counter.value;
+// in the slice file. For example: `useSelector((state) => state.room.value)`
+export const selectCount = state => state.room.value;
 
 export default slice.reducer;
