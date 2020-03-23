@@ -10,11 +10,11 @@ import {
 import styles from "./Room.module.css";
 
 export function Room() {
-  let peerConnection = null;
-  let localStream = null;
-  let remoteStream = null;
-  let roomDialog = null;
-  let roomId = null;
+  // let peerConnection = null;
+  // let localStream = null;
+  // let remoteStream = null;
+  // let roomDialog = null;
+  // let roomId = null;
 
   const localVideoEl = useRef(null);
 
@@ -23,6 +23,11 @@ export function Room() {
   // const [incrementAmount, setIncrementAmount] = useState("2");
   const [disableCameraBtn, setDisableCameraBtn] = useState(false);
   const [disableCreateRoomBtn, setDisableCreateRoomBtn] = useState(true);
+  const [peerConnection, setPeerConnection] = useState();
+  const [localStream, setLocalStream] = useState();
+  const [remoteStream, setRemoteStream] = useState();
+  const [roomDialog, setRoomDialog] = useState();
+  const [roomId, setRoomId] = useState();
 
   const openUserMedia = async e => {
     const stream = await navigator.mediaDevices.getUserMedia({
@@ -31,7 +36,7 @@ export function Room() {
     });
     localVideoEl.current.srcObject = stream;
     // document.querySelector("#localVideo").srcObject = stream;
-    localStream = stream;
+    setLocalStream(stream);
     // remoteStream = new MediaStream();
     // document.querySelector("#remoteVideo").srcObject = remoteStream;
 
